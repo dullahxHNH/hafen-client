@@ -32,6 +32,7 @@ import java.awt.image.BufferedImage;
 import static haven.PUtils.*;
 
 public class Window extends Widget implements DTarget {
+	public static final Tex cl = Resource.loadtex("gfx/hud/wnd/lg/cl");
 	public static final TexI cm = new TexI(Resource.loadimg("gfx/hud/wnd/lg/cm"));
     public static final Tex bg = Resource.loadtex("gfx/hud/wnd/lg/bg");
     public static Coord wtl = new Coord(0, 9);
@@ -163,6 +164,11 @@ public class Window extends Widget implements DTarget {
     	this.sz = wsz.add(tlo).add(rbo);
     	ctl = tlo.add(tlm);
     	atl = ctl.add(mrgn);
+    	cmw = (cap == null)?0:(cap.sz().x);
+    	cmw = Math.max(cmw, wsz.x / 4);
+    	cptl = new Coord(ctl.x, tlo.y);
+    	cpsz = tlo.add(cpo.x + cmw, cm.sz().y).sub(cptl);
+    	cmw = cmw - (cl.sz().x - cpo.x) - 5;
     	cbtn.c = xlate(tlo.add(wsz.x - cbtn.sz.x - 3, wtl.y + 4), false);
     	for(Widget ch = child; ch != null; ch = ch.next)
     	    ch.presize();

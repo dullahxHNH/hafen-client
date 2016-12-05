@@ -10,7 +10,7 @@ public class ResourceTransformer {
 
     static {
         transformers = new HashMap<String, Transformer>();
-        transformers.put("gfx/terobjs/cupboard", new CupboardFlattener());
+        //transformers.put("gfx/terobjs/cupboard", new CupboardFlattener());
     }
 
     public static void transform(Resource res) {

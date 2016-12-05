@@ -54,7 +54,8 @@ public class GobPath extends Sprite {
 	if(move != null) {
 	    Class<? extends GAttrib> aClass = move.getClass();
 	    if(aClass == LinMove.class) {
-		return ((LinMove) move).t;
+		//return ((LinMove) move).t;
+		return new Coord();
 	    } else if(aClass == Homing.class) {
 		return getGobCoords(((Homing) move).tgt());
 	    } else if(aClass == Following.class) {
