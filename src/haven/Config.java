@@ -98,7 +98,7 @@ public class Config {
     public static Pref<Integer> alarmVolume = new Pref<Integer>("haven.alarm.volume", 500, TYPE_INT);
     public static Pref<Boolean> simplifyCrops = new Pref<Boolean>("simplecrops", false, TYPE_BOOL);
     public static Pref<Boolean> showFlavor = new Pref<Boolean>("showflo", true, TYPE_BOOL);
-    public static Pref<Boolean> showQuality = new Pref<Boolean>("haven.display.quality", false, TYPE_BOOL);
+    public static Pref<Boolean> showQuality = new Pref<Boolean>("haven.display.quality", true, TYPE_BOOL);
     public static Pref<Integer> showQualityMode = new Pref<Integer>("haven.display.quality.mode", 0, TYPE_INT);
     public static Pref<Boolean> showQualityBackground = new Pref<Boolean>("haven.display.quality.back", true, TYPE_BOOL);
     public static Pref<Boolean> enableAutoStudy = new Pref<Boolean>("haven.autostudy", false, TYPE_BOOL);

@@ -217,8 +217,8 @@ public class WItem extends Widget implements DTarget {
 
         boolean drawQuality = Config.showQuality.get() && (quality.get() != null);
         // toggle quality display when both ALT and CTRL are pressed
-        if (ui.modctrl && ui.modmeta)
-            drawQuality = !drawQuality;
+        //if (ui.modctrl && ui.modmeta)
+        //    drawQuality = !drawQuality;
 
         if (item.meter > 0) {
             double a = ((double) item.meter) / 100.0;

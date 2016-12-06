@@ -2,6 +2,8 @@ package haven.tasks;
 
 import haven.*;
 
+import static haven.OCache.posres;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +39,7 @@ class TaskContext {
     }
 
     public void click(Gob gob, int button, int mod) {
-        ui.gui.map.wdgmsg("click", Coord.z, gob.rc, button, 0, mod, (int)gob.id, gob.rc, 0, -1);
+        ui.gui.map.wdgmsg("click", Coord.z, gob.rc.floor(posres), button, 0, mod, (int)gob.id, gob.rc.floor(posres), 0, -1);
     }
 
     public Gob findObjectById(long id) {
@@ -86,7 +88,7 @@ class TaskContext {
     }
 
     public void itemact(Gob gob, int mod) {
-        ui.gui.map.wdgmsg("itemact", Coord.z, gob.rc, mod, 0, (int)gob.id, gob.rc, 0, -1);
+        ui.gui.map.wdgmsg("itemact", Coord.z, gob.rc.floor(posres), mod, 0, (int)gob.id, gob.rc.floor(posres), 0, -1);
     }
 
     public Gob player() {
