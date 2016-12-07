@@ -39,7 +39,8 @@ import javax.media.opengl.glu.GLU;
 public class HavenPanel extends GLCanvas implements Runnable, Console.Directory {
     UI ui;
     boolean inited = false;
-    int w, h;
+    static int w;
+	int h;
     public boolean bgmode = false;
     long fd = 10, bgfd = 200, fps = 0;
     double uidle = 0.0, ridle = 0.0;
@@ -301,7 +302,9 @@ public class HavenPanel extends GLCanvas implements Runnable, Console.Directory 
 	synchronized(ui) {
 	    ui.draw(g);
 	}
-
+    if (Config.showfps.get()) {
+        FastText.aprint(g, new Coord(HavenPanel.w - 50, 15), 0, 1, "FPS: " + fps);
+    }
 	if(Config.dbtext) {
 	    int y = h - 165;
 	    FastText.aprintf(g, new Coord(10, y -= 15), 0, 1, "FPS: %d (%d%%, %d%% idle)", fps, (int)(uidle * 100.0), (int)(ridle * 100.0));

@@ -44,6 +44,7 @@ import java.awt.image.WritableRaster;
 
 import static haven.GameUILayout.*;
 import static haven.Inventory.invsq;
+import static haven.OCache.posres;
 
 public class GameUI extends ConsoleHost implements Console.Directory {
     public static final Text.Foundry msgfoundry = new Text.Foundry(Text.dfont, 14);
@@ -1434,9 +1435,9 @@ public class GameUI extends ConsoleHost implements Console.Directory {
                 map.delay(map.new Hittest(mvc) {
                     protected void hit(Coord pc, Coord2d mc, MapView.ClickInfo inf) {
                         if (inf == null)
-                            ui.gui.wdgmsg("belt", slot, 1, ui.modflags(), mc);
+                            ui.gui.wdgmsg("belt", slot, 1, ui.modflags(), mc.floor(posres));
                         else
-                            ui.gui.wdgmsg("belt", slot, 1, ui.modflags(), mc, (int) inf.gob.id, inf.gob.rc);
+                            ui.gui.wdgmsg("belt", slot, 1, ui.modflags(), mc.floor(posres), (int) inf.gob.id, inf.gob.rc.floor(posres));
                     }
 
                     protected void nohit(Coord pc) {

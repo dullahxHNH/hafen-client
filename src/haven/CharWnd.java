@@ -608,7 +608,7 @@ public class CharWnd extends Window {
 
     public class StudyInfo extends Widget {
 	public Widget study;
-	public int texp, tw, tenc;
+	public int texp, tw, tenc, tlph;
 	private final Text.UText<?> texpt = new Text.UText<Integer>(Text.std) {
 	    public Integer value() {return(texp);}
 	    public String text(Integer v) {return(Utils.thformat(v));}
@@ -620,29 +620,52 @@ public class CharWnd extends Window {
 	    public Integer value() {return(tenc);}
 	    public String text(Integer v) {return(Integer.toString(tenc));}
 	};
+    private final Text.UText<?> tlpht = new Text.UText<Integer>(Text.std) {
+        public Integer value() {
+            return (tlph);
+        }
 
+        public String text(Integer v) {
+            return (Integer.toString(tlph));
+        }
+    };
+    
 	private StudyInfo(Coord sz, Widget study) {
 	    super(sz);
 	    this.study = study;
 	    add(new Label("Attention:"), 2, 2);
 	    add(new Label("Experience cost:"), 2, 32);
+	    add(new Label("LP/hour"), 2, sz.y - 64);
 	    add(new Label("Learning points:"), 2, sz.y - 32);
 	}
 
 	private void upd() {
-	    int texp = 0, tw = 0, tenc = 0;
+	    int texp = 0, tw = 0, tenc = 0, tlph = 0;;
 	    for(GItem item : study.children(GItem.class)) {
 		try {
 		    Curiosity ci = ItemInfo.find(Curiosity.class, item.info());
-		    if(ci != null) {
+		    if (ci != null) {
 			texp += ci.exp;
 			tw += ci.mw;
 			tenc += ci.enc;
+			
+			try {
+                Resource res = item.getres();
+                if (res != null) {
+                    // ambers way with CurioStudyTimes :  Double t = CurioStudyTimes.curios.get(res.basename());
+                    int t = ci.getCustomInfo().time / 3600;
+                    if (t > 0) {
+                        tlph += Math.round(ci.exp / t);
+                    }
+                }
+            } catch (Loading l) {
+            }
+			
 		    }
 		} catch(Loading l) {
 		}
 	    }
-	    this.texp = texp; this.tw = tw; this.tenc = tenc;
+	    this.texp = texp; this.tw = tw; this.tenc = tenc; this.tlph=tlph;
 	}
 
 	public void draw(GOut g) {
@@ -654,6 +677,8 @@ public class CharWnd extends Window {
 	    g.aimage(tenct.get().tex(), new Coord(sz.x - 4, 47), 1.0, 0.0);
 	    g.chcolor(192, 192, 255, 255);
 	    g.aimage(texpt.get().tex(), sz.add(-4, -15), 1.0, 0.0);
+        g.chcolor(192, 192, 255, 255);
+        g.aimage(tlpht.get().tex(), sz.add(-4, -49), 1.0, 0.0);
 	}
     }
 

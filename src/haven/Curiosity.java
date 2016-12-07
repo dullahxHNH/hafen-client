@@ -59,7 +59,7 @@ public class Curiosity extends ItemInfo.Tip {
         return(RichText.render(buf.toString(), 0).img);
     }
 
-    private CuriosityInfo getCustomInfo() {
+    public CuriosityInfo getCustomInfo() {
         if (item == null)
             return null;
         if (customInfo == null) {

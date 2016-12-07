@@ -127,6 +127,7 @@ public class Config {
     public static Pref<Boolean> displayMiniTowers = new Pref<Boolean>("display.minitowers", false, TYPE_BOOL);
     public static boolean screenshotMode;
     public static boolean enableAutoloader;
+	public static Pref<Boolean> showfps= new Pref<Boolean>("display.showfps", true, TYPE_BOOL);
 
     static {
 	String p;

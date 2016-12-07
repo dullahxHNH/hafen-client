@@ -9,6 +9,9 @@ public class CuriosityInfo {
     public static final CuriosityInfo empty = new CuriosityInfo(-1, -1);
     private static final HashMap<String, CuriosityInfo> infos;
 
+    /**
+     * returns the time in seconds needed to fully study a curiosity
+     */
     public final int time; // in seconds
     public final int slots;
 
